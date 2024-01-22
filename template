@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:v="urn:schemas-microsoft-com:vml"
+   xmlns:o="urn:schemas-microsoft-com:office:office">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, use-scalable=yes" />
+      <meta
+         name="format-detection"
+         content="telephone=no, date=no, address=no, email=no, url=no" />
+      <meta name="x-apple-disable-message-reformatting" />
+      <meta name="color-scheme" content="light dark" />
+      <meta name="supported-color-schemes" content="light dark" />
+
+      <title>Fetch Email Exercise</title>
+
+      <script type="module">
+         import Handlebars from "https://cdn.jsdelivr.net/npm/handlebars@4.7.8/+esm";
+
+         Handlebars.registerHelper("calculateAge", function (birthDate) {
+            const birthYear = new Date(birthDate).getFullYear();
+            const currentYear = new Date().getFullYear();
+            return currentYear - birthYear;
+         });
+
+         Handlebars.registerHelper("orderSocialMediaImages", function (age) {
+            let imageOrder;
+            if (age < 35) {
+               imageOrder = [
+                  {
+                     link: "https://www.tiktok.com/@fetch",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_TIKTOK_MOBILE.ENG%20%282%29.png",
+                     alt: "Follow us on TikTok",
+                  },
+                  {
+                     link: "https://www.instagram.com/fetchrewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_INSTAGRAM_MOBILE.ENG%20%281%29_1.png",
+                     alt: "Follow us on Instagram",
+                  },
+                  {
+                     link: "https://twitter.com/FetchRewards",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_X_MOBILE.ENG_1.png",
+                     alt: "Follow us on X",
+                  },
+                  {
+                     link: "https://www.facebook.com/FetchRewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_FACEBOOK_MOBILE.ENG%20%281%29.png",
+                     alt: "Follow us on Facebook",
+                  },
+               ];
+            } else if (age >= 35 && age <= 55) {
+               imageOrder = [
+                  {
+                     link: "https://www.instagram.com/fetchrewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_INSTAGRAM_MOBILE.ENG%20%281%29_1.png",
+                     alt: "Follow us on Instagram",
+                  },
+                  {
+                     link: "https://twitter.com/FetchRewards",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_X_MOBILE.ENG_1.png",
+                     alt: "Follow us on X",
+                  },
+                  {
+                     link: "https://www.tiktok.com/@fetch",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_TIKTOK_MOBILE.ENG%20%282%29.png",
+                     alt: "Follow us on TikTok",
+                  },
+                  {
+                     link: "https://www.facebook.com/FetchRewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_FACEBOOK_MOBILE.ENG%20%281%29.png",
+                     alt: "Follow us on Facebook",
+                  },
+               ];
+            } else {
+               imageOrder = [
+                  {
+                     link: "https://www.facebook.com/FetchRewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_FACEBOOK_MOBILE.ENG%20%281%29.png",
+                     alt: "Follow us on Facebook",
+                  },
+                  {
+                     link: "https://twitter.com/FetchRewards",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_X_MOBILE.ENG_1.png",
+                     alt: "Follow us on X",
+                  },
+                  {
+                     link: "https://www.instagram.com/fetchrewards/",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_INSTAGRAM_MOBILE.ENG%20%281%29_1.png",
+                     alt: "Follow us on Instagram",
+                  },
+                  {
+                     link: "https://www.tiktok.com/@fetch",
+                     src: "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/editor_images/DSN2-6828%20%20%20Social%20Invite%20Email%20Refresh_MODULE_TIKTOK_MOBILE.ENG%20%282%29.png",
+                     alt: "Follow us on TikTok",
+                  },
+               ];
+            }
+
+            return imageOrder
+               .map(
+                  (image) =>
+                     `<a href="${image.link}" target="_blank"><img src="${image.src}" alt="${image.alt}" class="social-item" style="border-radius: 15px; max-width: 700px; margin: .25rem 0;"></a>`
+               )
+               .join("");
+         });
+
+         document.body.innerHTML = Handlebars.compile(template.innerHTML)(
+            JSON.parse(data.innerHTML)
+         );
+      </script>
+      <script type="application/json" id="data">
+         {
+            "birthDate": "Mon, 23 Oct 1968 19:07:56 GMT"
+         }
+      </script>
+
+      <!--[if mso]>
+         <noscript>
+            <xml>
+               <o:OfficeDocumentSettings>
+                  <o:PixelsPerInch>96</o:PixelsPerInch>
+               </o:OfficeDocumentSettings>
+            </xml>
+         </noscript>
+      <![endif]-->
+
+      <style type="text/css">
+         table {
+            border-spacing: 0;
+            border-collapse: collapse;
+         }
+
+         td {
+            padding: 0;
+         }
+
+         * {
+            font-size: 16px;
+         }
+
+         img {
+            border: 0;
+         }
+
+         .content {
+            line-height: 20px;
+            font-size: 16px;
+         }
+
+         .ExternalClass {
+            width: 100%;
+         }
+
+         .ExternalClass,
+         .ExternalClass p,
+         .ExternalClass span,
+         .ExternalClass font,
+         .ExternalClass td,
+         .ExternalClass div {
+            line-height: 100%;
+         }
+         a[x-apple-data-detectors="true"] {
+            color: inherit !important;
+            text-decoration: inherit !important;
+         }
+
+         body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+               "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+            background-color: #3d3d3d;
+         }
+
+         @media only screen and (max-width: 767px) {
+            .desktop-image {
+               display: none;
+            }
+            .mobile-image {
+               display: inline;
+            }
+         }
+
+         @media only screen and (min-width: 768px) {
+            .desktop-image {
+               display: inline;
+            }
+            .mobile-image {
+               display: none;
+            }
+         }
+
+         :root {
+            color-scheme: light dark;
+            supported-color-schemes: light dark;
+         }
+
+         @media (prefers-color-scheme: dark) {
+            body,
+            table {
+               color: #e6e7e8 !important;
+            }
+
+            .darkmode-transparent {
+               background: transparent !important ;
+            }
+
+            [data-ogsc] body,
+            table {
+               color: #e6e7e8 !important;
+            }
+
+            [data-ogsc] .darkmode-transparent {
+               background: transparent !important ;
+            }
+         }
+      </style>
+
+      <!--[if mso]>
+         <style text="text/css">
+            body {
+               font-family: "Lucida Sans", "Lucida Sans Regular",
+                  "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+                  sans-serif !important;
+            }
+            table {
+               border-spacing: 0 !important;
+               border-collapse: 0 !important;
+               background-color: #e6e7e8;
+            }
+         </style>
+      <![endif]-->
+   </head>
+
+   <body
+      class="body"
+      xml:lang="en"
+      style="margin: 0; padding: 0; min-width: 100%; background-color: #e6e7e8">
+      <template id="template">
+         <div
+            style="
+               width: 100%;
+               table-layout: fixed;
+               background-color: #e6e7e8;
+               color: #3d3d3d;
+               font-family: 'Lucida Sans', 'Lucida Sans Regular',
+                  'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+                  sans-serif;
+               font-size: 16px;
+               margin: 0 auto;
+            ">
+            <div
+               style="
+                  max-width: 700px;
+                  background-color: #fff;
+                  color: #3d3d3d;
+                  font-family: 'Lucida Sans', 'Lucida Sans Regular',
+                     'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+                     sans-serif;
+                  font-size: 16px;
+                  margin: 0 auto;
+               ">
+               <div
+                  style="
+                     font-size: 0;
+                     color: #fff;
+                     mso-line-height-rule: exactly;
+                     line-height: 0px;
+                     display: none;
+                     max-width: 0;
+                     max-height: 0;
+                     opacity: 0;
+                     overflow: hidden;
+                     mso-hide: all;
+                  ">
+                  Preheader text
+                  &zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;&zwj;&nbsp;&#847;
+               </div>
+
+               <!--[if mso]>
+            <table width="700" align="center" style="border-spacing: 0; border-collapse: collapse; color: #3d3d3d; margin: 0 auto;" role="presentation">
+            <tr>
+            <td style="padding: 0;">
+        <![endif]-->
+
+               <table
+                  align="center"
+                  style="
+                     border-spacing: 0;
+                     border-collapse: collapse;
+                     color: #3d3d3d;
+                     background-color: #fff;
+                     font-family: 'Lucida Sans', 'Lucida Sans Regular',
+                        'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+                        sans-serif;
+                     font-size: 16px;
+                     margin: 0 auto;
+                     padding: 0;
+                     width: 100%;
+                     max-width: 700px;
+                  "
+                  role="presentation">
+                  <tr>
+                     <td style="padding: 0">
+                        <table
+                           width="100%"
+                           style="border-spacing: 0"
+                           role="presentation">
+                           <!--[if mso]>
+                              <table width="100%" style="border-spacing:0;" role="presentation">
+                              <tr>
+                              <td width="700" valign="top" style="padding: 0;">
+                           <![endif]-->
+                           <tr>
+                              <td
+                                 class="nav"
+                                 style="
+                                    height: 1.5rem;
+                                    padding: 1rem;
+                                    max-width: 700px;
+                                 ">
+                                 <a href="https://www.fetch.com"
+                                    ><img
+                                       class="nav-item"
+                                       style="height: 1.8rem"
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/Fetch_Logo_Secondary_Horizontal.png"
+                                       alt="Fetch Logo"
+                                 /></a>
+                              </td>
+                           </tr>
+                        </table>
+                        <!--[if mso]>
+                              </td>
+                              </tr>
+                              </table>
+                           <![endif]-->
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td style="padding: 0">
+                        <table
+                           width="100%"
+                           style="border-spacing: 0"
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="header"
+                                 style="padding-top: 1rem; max-width: 700px">
+                                 <a
+                                    class="desktop-image"
+                                    href="https://www.fetch.com"
+                                    ><img
+                                       style="width: 100%"
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/DESKTOP_HDR_1.png"
+                                       alt="Desktop Headline"
+                                 /></a>
+                                 <a
+                                    class="mobile-image"
+                                    href="https://www.fetch.com"
+                                    ><img
+                                       style="width: 100%"
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/MOBILE_HDR_1.png"
+                                       alt="Mobile Headline"
+                                 /></a>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td
+                                 class="full-screen-container"
+                                 style="
+                                    font-size: 1.5rem;
+                                    padding: 0 1.5rem 1rem 1.5rem;
+                                 ">
+                                 <p class="full-screen-item" style="width: 100%"
+                                    >Lorem ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Voluptatem voluptas,
+                                    voluptatum culpa quos cumque blanditiis
+                                    reprehenderit. Cumque adipisci, hic
+                                    repellendus inventore sed qui ducimus! Fugit
+                                    mollitia dolores quidem nihil dicta!</p
+                                 >
+                                 <a href="https://www.fetch.com"
+                                    ><img
+                                       class="full-screen-item"
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/Fullwidth%20snippet_1.png"
+                                       alt="Full Width Module"
+                                 /></a>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td
+                        class="half-screen-container"
+                        style="padding: 0; font-size: 0">
+                        <table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="half-screen-item"
+                                 style="width: 100%; padding: 0 1.5rem"
+                                 ><a href="https://www.fetch.com"
+                                    ><img
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/1_1.png"
+                                       alt="Half Screen Module"
+                                 /></a>
+                              </td>
+                           </tr>
+                        </table>
+                        <table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td style="width: 100%; padding: 0 1.5rem"
+                                 ><p class="half-screen-item"
+                                    >Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit. Recusandae, blanditiis
+                                    itaque quisquam libero, ea totam, deserunt
+                                    unde aut numquam maiores excepturi eaque in
+                                    consequatur ipsam atque. Ipsam quod officia
+                                    fuga!</p
+                                 >
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td
+                        class="half-screen-container"
+                        style="padding: 0; font-size: 0"
+                        ><table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td style="width: 100%; padding: 1.5rem"
+                                 ><p class="half-screen-item"
+                                    >Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit. Recusandae, blanditiis
+                                    itaque quisquam libero, ea totam, deserunt
+                                    unde aut numquam maiores excepturi eaque in
+                                    consequatur ipsam atque. Ipsam quod officia
+                                    fuga!</p
+                                 >
+                              </td>
+                           </tr>
+                        </table>
+                        <table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="half-screen-item"
+                                 style="width: 100%; padding: 1.5rem"
+                                 ><a href="https://www.fetch.com"
+                                    ><img
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/1_1.png"
+                                       alt="Half Screen Module"
+                                 /></a>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td
+                        class="half-screen-container"
+                        style="padding: 0; font-size: 0">
+                        <table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="half-screen-item"
+                                 style="width: 100%; padding: 0 1.5rem"
+                                 ><a href="https://www.fetch.com"
+                                    ><img
+                                       src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/1_1.png"
+                                       alt="Half Screen Module"
+                                 /></a>
+                              </td>
+                           </tr>
+                        </table>
+                        <table
+                           class="half-screen-item"
+                           width="100%"
+                           style="
+                              width: 100%;
+                              margin-top: 0;
+                              border-spacing: 0;
+                              display: inline-block;
+                              vertical-align: top;
+                              max-width: 340px;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td style="width: 100%; padding: 0 1.5rem"
+                                 ><p class="half-screen-item"
+                                    >Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit. Recusandae, blanditiis
+                                    itaque quisquam libero, ea totam, deserunt
+                                    unde aut numquam maiores excepturi eaque in
+                                    consequatur ipsam atque. Ipsam quod officia
+                                    fuga!</p
+                                 >
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td style="padding: 0">
+                        <table
+                           width="100%"
+                           style="border-spacing: 0"
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="full-screen-container"
+                                 style="
+                                    font-size: 1.5rem;
+                                    max-width: 700px;
+                                    padding: 1.5rem;
+                                 ">
+                                 {{#orderSocialMediaImages (calculateAge
+                                 birthDate)}} {{/orderSocialMediaImages}}
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td style="padding: 0 0 2rem 0; background-color: #f1f1f1">
+                        <table
+                           width="100%"
+                           style="
+                              border-spacing: 0;
+                              background-color: #f1f1f1;
+                              font-family: Arial, Helvetica, sans-serif;
+                              font-size: 1.25rem;
+                           "
+                           role="presentation">
+                           <tr>
+                              <td
+                                 class="full-screen-container"
+                                 style="
+                                    font-size: 1.5rem;
+                                    max-width: 700px;
+                                    padding: 1.5rem;
+                                 ">
+                                 <table style="margin: 0 auto">
+                                    <tr>
+                                       <td
+                                          ><a href="https://www.fetch.com"
+                                             ><img
+                                                id="footer-logo"
+                                                src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/669d5713-9b6a-46bb-bd7e-c542cff6dd6a/a8154cab5f1b44d7828db857ef3be885/Fetch_Logo_Primary_Stacked.png"
+                                                alt="Fetch Logo"
+                                                style="height: 4rem" /></a
+                                       ></td>
+                                    </tr>
+                                 </table>
+                                 <table style="margin: 0 auto">
+                                    <tr>
+                                       <td
+                                          style="
+                                             font-style: italic;
+                                             padding-top: 1.5rem;
+                                          ">
+                                          <span id="copyright"
+                                             >&copy; 2023 Fetch Rewards, Inc.
+                                             All rights reserved.</span
+                                          ></td
+                                       >
+                                    </tr>
+                                 </table>
+                                 <table style="margin: 0 auto">
+                                    <tr>
+                                       <td
+                                          ><p
+                                             ><a
+                                                href="https://www.google.com/maps/place/1050+E+Washington+Ave,+Madison,+WI+53703/@43.0845866,-89.3731709,17z/data=!3m1!4b1!4m6!3m5!1s0x8806536fdd2bde73:0xc0ad5292ccd81fed!8m2!3d43.0845866!4d-89.3705906!16s%2Fg%2F11hcc5q0h3?entry=ttu"
+                                                >1050 E. Washington Ave.</a
+                                             >
+                                             2nd Fl, Madison, WI 53703</p
+                                          ></td
+                                       >
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+
+               <!--[if mso]>
+        </td>
+        </tr>
+        </table>
+    <![endif]-->
+            </div>
+         </div>
+      </template>
+   </body>
+</html>
